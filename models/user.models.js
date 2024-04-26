@@ -36,4 +36,43 @@ userSchema.pre('save', async function(next) {
   this.password = await bcrypt.hash(this.password, SALT_ROUNDS);
 });
 
+const houseSchema = new Schema ({
+  title: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  location: {
+    type: String,
+    required: true
+  },
+  bedrooms: {
+    type: Number,
+    required: true
+  },
+  bathrooms: {
+    type: Number,
+    required: true
+  },
+  size: {
+    type: Number,
+    required: true
+  },
+  amenities: [String],
+  images: [],
+  available: {
+    type: Boolean,
+    default: true
+  }
+},{
+  timestamps: true
+})
+
 module.exports = mongoose.model('User', userSchema);
