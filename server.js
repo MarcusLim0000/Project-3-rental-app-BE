@@ -8,6 +8,8 @@ const app = express();
 app.use(express.json());
 
 //Put api use here
+app.get('/api/users', require('./routes/user.routes'));
+
 
 //defining port and listen
 const port = 3005;
