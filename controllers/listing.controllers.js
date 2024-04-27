@@ -10,4 +10,6 @@ async function createListing(req, res) {
   }
 }
 
+// To add in deleteListing function, updateListing, getListing
+
 module.exports = { createListing };
