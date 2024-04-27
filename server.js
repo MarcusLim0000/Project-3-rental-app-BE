@@ -9,6 +9,7 @@ app.use(express.json());
 
 //Put api use here
 app.get('/api/users', require('./routes/user.routes'));
+app.use('/api/listing', require('./routes/listing.routes'));
 
 
 //defining port and listen
