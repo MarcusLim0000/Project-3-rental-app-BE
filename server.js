@@ -7,9 +7,15 @@ require('./config/database')
 const app = express();
 app.use(express.json());
 
+// middleware that adds the user object from a JWT to req.user
+app.use(require('./config/checkToken'));
+
 //Put api use here
-app.get('/api/users', require('./routes/user.routes'));
-app.use('/api/listing', require('./routes/listing.routes'));
+app.use('/api/users', require('./routes/user.routes'));
+
+//Protected routes here
+const ensureLoggedIn = require('./config/ensureLoggedIn');
+app.use('/api/listing', ensureLoggedIn, require('./routes/listing.routes'));
 
 
 //defining port and listen
