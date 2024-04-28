@@ -10,4 +10,7 @@ router.post('/', userCtrl.create);
 router.post('/sign-in', userCtrl.signIn);
 //http://localhost:3005/api/users/sign-in
 
+router.get('/listings/:id', userCtrl.getUserListings);
+//http://localhost:3005/api/users/listings/id
+
 module.exports = router;
