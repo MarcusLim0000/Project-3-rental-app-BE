@@ -1,10 +1,12 @@
 const express = require('express');
+const cors = require('cors')
 
 //Connecting to mongodb
 require('dotenv').config();
 require('./config/database')
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 // middleware that adds the user object from a JWT to req.user
