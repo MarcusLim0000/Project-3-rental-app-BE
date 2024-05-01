@@ -14,10 +14,7 @@ app.use(require('./config/checkToken'));
 
 //Put api use here
 app.use('/api/users', require('./routes/user.routes'));
-
-//Protected routes here
-const ensureLoggedIn = require('./config/ensureLoggedIn');
-app.use('/api/listing', ensureLoggedIn, require('./routes/listing.routes'));
+app.use('/api/listing', require('./routes/listing.routes'));
 
 
 //defining port and listen
