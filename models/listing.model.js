@@ -1,9 +1,15 @@
 const mongoose = require("mongoose");
+const User = require('./user.models');
+
 
 const listingSchema = mongoose.Schema(
   {
     title: {
       type: String,
+      required: true,
+    },
+    size: {
+      type: Number,
       required: true,
     },
     description: {
@@ -18,7 +24,6 @@ const listingSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-
     bedrooms: {
       type: Number,
       required: true,
@@ -27,21 +32,15 @@ const listingSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
-
-    size: {
-      type: Number,
-      required: true,
-    },
-
-    amenities: {
-      type: String,
-      required: true,
-    },
-
-    imageUrls: {
+    images: {
       type: Array,
       required: true,
     },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+    }
   },
   { timestamps: true }
 );
