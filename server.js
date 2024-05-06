@@ -19,7 +19,8 @@ app.use('/api/users', require('./routes/user.routes'));
 
 //Protected routes here
 const ensureLoggedIn = require('./config/ensureLoggedIn');
-app.use('/api/listing', ensureLoggedIn, require('./routes/listing.routes'));
+app.use('/api/listing',  require('./routes/listing.routes'));
+app.use('/api/listing/create', ensureLoggedIn, require('./routes/listing.routes'));
 
 //testing uploading function below * FROM MARCUS 5/5
 const storage = multer.diskStorage({
