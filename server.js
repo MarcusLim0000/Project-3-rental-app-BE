@@ -1,11 +1,8 @@
 const express = require('express');
 const cors = require('cors')
-//importing multer uploading below  * FROM MARCUS 5/5
-const multer = require('multer')
-
-//Connecting to mongodb
 require('dotenv').config();
 require('./config/database')
+const uploadRoute = require('./controllers/uploadController')
 
 const app = express();
 app.use(cors());
@@ -19,30 +16,14 @@ app.use('/api/users', require('./routes/user.routes'));
 
 //Protected routes here
 const ensureLoggedIn = require('./config/ensureLoggedIn');
-app.use('/api/listing',  require('./routes/listing.routes'));
-app.use('/api/listing/create', ensureLoggedIn, require('./routes/listing.routes'));
-
-//testing uploading function below * FROM MARCUS 5/5
-const storage = multer.diskStorage({
-    destination: function (req, file, cb){
-        cb(null, './images')
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.originalname)
-    }
-});
-
-const upload = multer({ storage: storage });
-
-app.post('/upload', upload.single('file'), function(req, res){
-    res.json({upload: 'success'})
-});
-
-//test ends here
+const listingRoutes = require('./routes/listing.routes')
+app.use('/api/listing',  listingRoutes);
+app.use('/api/listing/create', ensureLoggedIn, listingRoutes);
+app.use('/api/upload', uploadRoute)
 
 //defining port and listen
-const port = 3005;
+const PORT = process.env.PORT;
 
-app.listen(port, function() {
-    console.log(`Express app is running on port ${port}`);
+app.listen(PORT, function() {
+    console.log(`Express app is running on port ${PORT}`);
 })

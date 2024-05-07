@@ -3,20 +3,6 @@ const bcrypt = require("bcrypt");
 const User = require("../models/user.models");
 const Listing = require("../models/listing.model");
 
-// async function create(req, res) {
-//   try {
-//     // Add the user to the db
-//     const user = await User.create(req.body);
-//     // token will be a string
-//     const token = createJWT(user);
-//     // Yes, we can serialize a string
-//     res.json(token);
-//   } catch (err) {
-//     // Probably a dup email
-//     res.status(400).json(err);
-//   }
-// }
-
 async function create (req, res) {
   try {
     const newUserDetails = req.body;

@@ -40,7 +40,6 @@ async function deleteListing(req, res) {
   if (!deletedListing) {
     return res.status(404).json({ error: 'Listing not found' });
   }
-console.log(deleteListing, "Listing deleted");
   res.json({ message: 'Listing deleted successfully' });
   } catch (error) {
     console.error(error);
@@ -56,7 +55,6 @@ async function updateListing(req, res) {
     req.body,
     { new: true }
     );
-    console.log(updatedListing, "Updated Listing");
     res.status(200).json(updatedListing);
     
   } catch (error) {

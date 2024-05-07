@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const User = require('./user.models');
 
-
 const listingSchema = mongoose.Schema(
+  
   {
     title: {
       type: String,
