@@ -14,7 +14,8 @@ http://localhost:3005/api/listing/
 router.delete('/delete/:id', listingCtrl.deleteListing);
 //http://localhost:3005/api/listing/delete/id
 
-router.post('/update/:id', listingCtrl.updateListing);
+router.put('/update/:id', listingCtrl.updateListing);
 //http://localhost:3005/api/listing/update/id
+
 
 module.exports = router;
