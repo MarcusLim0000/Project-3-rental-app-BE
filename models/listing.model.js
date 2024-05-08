@@ -7,6 +7,7 @@ const listingSchema = mongoose.Schema(
     title: {
       type: String,
       required: true,
+      unique: true,
     },
     size: {
       type: Number,
