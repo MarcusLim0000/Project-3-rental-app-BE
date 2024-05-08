@@ -22,6 +22,17 @@ async function getUserListings(req, res) {
   }
 }
 
+async function getListingsById(req, res) {
+  try {
+    console.log(req.params)
+const listing = await Listing.find({_id: req.params.id})
+return res.status(200).json(listing);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: error.message });
+  }
+}
+
 
 async function getListings(req, res) {
   try {
@@ -47,23 +58,23 @@ async function deleteListing(req, res) {
   }
 }
 
-// async function updateListing(req, res) {
-//   try {
-//     const { id } = req.params;
-//   const updatedListing = await Listing.findByIdAndUpdate(
-//     id.trim(), 
-//     req.body,
-//     { new: true }
-//     );
-//     res.status(200).json(updatedListing);
-    
-//   } catch (error) {
-//     console.error(error);
-//     return res.status(500).json({ error: error.message });
-//   }
-// }
-
 async function updateListing(req, res) {
+  try {
+    const { id } = req.params;
+  const updatedListing = await Listing.findByIdAndUpdate(
+    id.trim(), 
+    req.body,
+    { new: true }
+    );
+    res.status(200).json(updatedListing);
+    
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: error.message });
+  }
+}
+
+async function updateAvailability(req, res) {
   try {
     const { id } = req.params;
     const { availability } = req.body;  
@@ -86,4 +97,16 @@ async function updateListing(req, res) {
 }
 
 
-module.exports = { createListing, getUserListings, getListings, deleteListing, updateListing,  };
+
+const getAvailableListings = async (req, res) => {
+  try {
+    const listings = await Listing.find({ availability: true });
+    res.status(200).json(listings);
+  } catch (error) {
+    console.error("Error getting available listings:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+
+module.exports = { createListing, getUserListings, getListings, deleteListing, updateListing, updateAvailability, getAvailableListings, getListingsById };
