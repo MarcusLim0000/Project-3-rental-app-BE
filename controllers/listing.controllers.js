@@ -63,8 +63,4 @@ async function updateListing(req, res) {
   }
 }
 
-
-// I can't create new listings via postman tho, think i need to be "logged in" as a user first?
-// To add in deleteListing function, updateListing, getListing
-
 module.exports = { createListing, getUserListings, getListings, deleteListing, updateListing,  };
