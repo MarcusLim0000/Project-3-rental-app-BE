@@ -12,10 +12,10 @@ router.get('/available', listingCtrl.getAvailableListings);
 //http://localhost:3005/api/listing/available
 
 router.get("/:id", listingCtrl.getUserListings); 
-http://localhost:3005/api/listing/:id
+//http://localhost:3005/api/listing/:id
 
 router.get("/", listingCtrl.getListings); 
-http://localhost:3005/api/listing/
+//http://localhost:3005/api/listing/
 
 router.delete('/delete/:id', listingCtrl.deleteListing);
 //http://localhost:3005/api/listing/delete/id
